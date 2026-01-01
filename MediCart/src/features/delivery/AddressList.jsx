@@ -1,54 +1,189 @@
-
 import React from 'react';
 
-export const AddressList = ({ addresses, selectedId, onSelect, onEdit, onDelete, onSetDefault }) => {
+export const AddressList = ({
+  addresses,
+  selectedId,
+  onSelect,
+  onEdit,
+  onDelete,
+  onSetDefault,
+}) => {
   if (!addresses || addresses.length === 0) return null;
 
   return (
     <div style={styles.list}>
-      {addresses.map(a => (
-        <div key={a.id} style={{ ...styles.card, borderColor: selectedId === a.id ? '#007bff' : '#eee' }}>
-          <div style={styles.header}>
-            <div style={styles.label}>{a.label}</div>
-            {a.isDefault && <div style={styles.tagDefault}>Default</div>}
-          </div>
+      {addresses.map(a => {
+        const selected = selectedId === a.id;
 
-          <div style={styles.body} onClick={() => onSelect(a.id)}>
-            <strong>{a.name}</strong>
-            <div style={{ color: '#555' }}>{a.phone}</div>
-            <div>{a.addressLine1}</div>
-            {a.addressLine2 && <div>{a.addressLine2}</div>}
-            <div>{a.city}, {a.state} - {a.pincode}</div>
-          </div>
+        return (
+          <div
+            key={a.id}
+            style={{
+              ...styles.card,
+              borderColor: selected ? '#2fbf5d' : '#ddd',
+              background: selected ? '#f3fff8' : '#fff',
+            }}
+            onClick={() => onSelect(a.id)}
+          >
+            {/* Header */}
+            <div style={styles.header}>
+              <div style={styles.leftHeader}>
+                <span style={styles.radio(selected)} />
+                <span style={styles.label}>{a.label}</span>
+                {a.isDefault && <span style={styles.defaultTag}>Default</span>}
+              </div>
+            </div>
 
-          <div style={styles.actions}>
-            <button style={styles.smallBtn} onClick={() => onEdit(a.id)}>Edit</button>
-            <button style={styles.smallBtn} onClick={() => onDelete(a.id)}>Delete</button>
-            {!a.isDefault && (
-              <button style={styles.smallBtn} onClick={() => onSetDefault(a.id)}>Set Default</button>
-            )}
-            <button
-              style={{ ...styles.smallBtn, background: selectedId === a.id ? 'rgb(47, 191, 93)' : '#eee', color: selectedId === a.id ? '#fff' : 'rgb(47, 191, 93)' }}
-              onClick={() => onSelect(a.id)}
+            {/* Body */}
+            <div style={styles.body}>
+              <div style={styles.name}>{a.name}</div>
+              <div style={styles.phone}>{a.phone}</div>
+              <div style={styles.address}>
+                {a.addressLine1}
+                {a.addressLine2 && `, ${a.addressLine2}`}
+              </div>
+              <div style={styles.address}>
+                {a.city}, {a.state} – {a.pincode}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div
+              style={styles.actions}
+              onClick={e => e.stopPropagation()}
             >
-              Deliver Here
-            </button>
+              <button style={styles.linkBtn} onClick={() => onEdit(a.id)}>
+                Edit
+              </button>
+              <button style={styles.linkBtn} onClick={() => onDelete(a.id)}>
+                Delete
+              </button>
+              {!a.isDefault && (
+                <button
+                  style={styles.linkBtn}
+                  onClick={() => onSetDefault(a.id)}
+                >
+                  Set Default
+                </button>
+              )}
+              <button
+                style={{
+                  ...styles.primaryBtn,
+                  opacity: selected ? 1 : 0.9,
+                }}
+                onClick={() => onSelect(a.id)}
+              >
+                Deliver Here
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
 
+/* Styles */
 const styles = {
-  list: { display: 'grid', gridTemplateColumns: '1fr', gap: 12 },
-  card: { border: '2px solid #eee', borderRadius: 8, padding: 12, background: '#fff' },
-  header: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 },
-  label: { fontSize: 12, padding: '2px 6px', borderRadius: 4, background: '#f0f3ff', color: '#3b4cca' },
-  tagDefault: { fontSize: 12, padding: '2px 6px', borderRadius: 4, background: '#e6ffed', color: '#067d40' },
-  body: { cursor: 'pointer', marginBottom: 8 },
-  actions: { display: 'flex', gap: 8, flexWrap: 'wrap' },
-  smallBtn: { padding: '6px 10px', borderRadius: 6, border: 'none', background: '#eee', cursor: 'pointer' },
+  list: {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gap: 14,
+  },
+
+  card: {
+    border: '2px solid #ddd',
+    borderRadius: 12,
+    padding: 16,
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+  },
+
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+
+  leftHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+  },
+
+  radio: (active) => ({
+    width: 16,
+    height: 16,
+    borderRadius: '50%',
+    border: '2px solid #2fbf5d',
+    background: active ? '#2fbf5d' : '#fff',
+  }),
+
+  label: {
+    fontSize: 12,
+    padding: '2px 8px',
+    borderRadius: 6,
+    background: '#eef2ff',
+    color: '#3b4cca',
+    fontWeight: 600,
+  },
+
+  defaultTag: {
+    fontSize: 12,
+    padding: '2px 8px',
+    borderRadius: 6,
+    background: '#e6ffed',
+    color: '#067d40',
+    fontWeight: 600,
+  },
+
+  body: {
+    fontSize: 14,
+    lineHeight: 1.5,
+    marginBottom: 12,
+  },
+
+  name: {
+    fontWeight: 600,
+    fontSize: 15,
+  },
+
+  phone: {
+    color: '#555',
+    marginBottom: 4,
+  },
+
+  address: {
+    color: '#444',
+  },
+
+  actions: {
+    display: 'flex',
+    gap: 10,
+    flexWrap: 'wrap',
+    alignItems: 'center',
+  },
+
+  linkBtn: {
+    background: 'transparent',
+    border: 'none',
+    color: '#2fbf5d',
+    fontSize: 13,
+    cursor: 'pointer',
+    padding: 0,
+  },
+
+  primaryBtn: {
+    marginLeft: 'auto',
+    background: '#2fbf5d',
+    color: '#fff',
+    border: 'none',
+    padding: '8px 16px',
+    borderRadius: 20,
+    fontSize: 13,
+    fontWeight: 600,
+    cursor: 'pointer',
+  },
 };
 
 export default AddressList;

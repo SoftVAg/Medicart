@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 
 const initial = {
@@ -13,7 +12,7 @@ const initial = {
   isDefault: false,
 };
 
- const AddressForm = ({ initialValues, onSubmit, onCancel }) => {
+const AddressForm = ({ initialValues, onSubmit, onCancel }) => {
   const [form, setForm] = useState(initial);
   const [errors, setErrors] = useState({});
 
@@ -41,126 +40,93 @@ const initial = {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
-    const payload = { ...form, isDefault: !!form.isDefault };
-    onSubmit && onSubmit(payload);
-    // Reset only if you’re adding a new address (not editing)
+    onSubmit?.({ ...form, isDefault: !!form.isDefault });
     if (!initialValues) setForm(initial);
   };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form} noValidate>
+    <form onSubmit={handleSubmit} style={styles.card} noValidate>
       {/* Name & Phone */}
-      <div style={styles.row}>
-        <div style={styles.field}>
-          <label htmlFor="name" style={styles.label}>Full Name</label>
+      <div style={styles.grid2}>
+        <Field label="Full Name" error={errors.name}>
           <input
-            id="name"
             type="text"
             value={form.name}
             onChange={e => handleChange('name', e.target.value)}
-            placeholder="e.g., Vedansh Agarwal"
-            autoComplete="name"
-            style={styles.input}
+            placeholder="Vedansh Agarwal"
+            style={styles.input(errors.name)}
           />
-          {errors.name && <span style={styles.error}>{errors.name}</span>}
-        </div>
-        <div style={styles.field}>
-          <label htmlFor="phone" style={styles.label}>Phone</label>
+        </Field>
+
+        <Field label="Phone" error={errors.phone}>
           <input
-            id="phone"
             type="tel"
             value={form.phone}
             onChange={e => handleChange('phone', e.target.value)}
-            placeholder="10 digits"
-            autoComplete="tel"
-            style={styles.input}
+            placeholder="10 digit mobile number"
+            style={styles.input(errors.phone)}
           />
-          {errors.phone && <span style={styles.error}>{errors.phone}</span>}
-        </div>
+        </Field>
       </div>
 
-      {/* Address Lines */}
-      <div style={styles.field}>
-        <label htmlFor="addressLine1" style={styles.label}>Address Line 1</label>
+      <Field label="Address Line 1" error={errors.addressLine1}>
         <input
-          id="addressLine1"
           type="text"
           value={form.addressLine1}
           onChange={e => handleChange('addressLine1', e.target.value)}
-          placeholder="House no., street"
-          autoComplete="address-line1"
-          style={styles.input}
+          placeholder="House no, Street"
+          style={styles.input(errors.addressLine1)}
         />
-        {errors.addressLine1 && <span style={styles.error}>{errors.addressLine1}</span>}
-      </div>
+      </Field>
 
-      <div style={styles.field}>
-        <label htmlFor="addressLine2" style={styles.label}>Address Line 2 (optional)</label>
+      <Field label="Address Line 2">
         <input
-          id="addressLine2"
           type="text"
           value={form.addressLine2}
           onChange={e => handleChange('addressLine2', e.target.value)}
-          placeholder="Area, landmark"
-          autoComplete="address-line2"
-          style={styles.input}
+          placeholder="Area, Landmark"
+          style={styles.input()}
         />
-      </div>
+      </Field>
 
-      {/* City, State, PIN */}
-      <div style={styles.row}>
-        <div style={styles.field}>
-          <label htmlFor="city" style={styles.label}>City</label>
+      <div style={styles.grid3}>
+        <Field label="City" error={errors.city}>
           <input
-            id="city"
             type="text"
             value={form.city}
             onChange={e => handleChange('city', e.target.value)}
-            placeholder="e.g., Pune"
-            autoComplete="address-level2"
-            style={styles.input}
+            style={styles.input(errors.city)}
           />
-          {errors.city && <span style={styles.error}>{errors.city}</span>}
-        </div>
-        <div style={styles.field}>
-          <label htmlFor="state" style={styles.label}>State</label>
+        </Field>
+
+        <Field label="State" error={errors.state}>
           <input
-            id="state"
             type="text"
             value={form.state}
             onChange={e => handleChange('state', e.target.value)}
-            placeholder="e.g., MH"
-            autoComplete="address-level1"
-            style={styles.input}
+            style={styles.input(errors.state)}
           />
-          {errors.state && <span style={styles.error}>{errors.state}</span>}
-        </div>
-        <div style={styles.field}>
-          <label htmlFor="pincode" style={styles.label}>PIN Code</label>
+        </Field>
+
+        <Field label="PIN Code" error={errors.pincode}>
           <input
-            id="pincode"
             type="text"
-            inputMode="numeric"
             value={form.pincode}
             onChange={e => handleChange('pincode', e.target.value)}
-            placeholder="6 digits"
-            autoComplete="postal-code"
-            style={styles.input}
+            style={styles.input(errors.pincode)}
           />
-          {errors.pincode && <span style={styles.error}>{errors.pincode}</span>}
-        </div>
+        </Field>
       </div>
 
-      {/* Label radio + default checkbox */}
-      <div style={styles.row}>
-        <div style={styles.field}>
-          <span style={styles.label}>Label</span>
-          <div style={styles.radioGroup} role="radiogroup" aria-label="Address label">
+      <div style={styles.rowBetween}>
+        <div>
+          <div style={styles.label}>Label</div>
+          <div style={styles.radioGroup}>
             {['Home', 'Work', 'Other'].map(lbl => (
-              <label key={lbl} style={styles.radioLabel}>
+              <label key={lbl} style={styles.chip(form.label === lbl)}>
                 <input
                   type="radio"
-                  name="label"
+                  hidden
                   value={lbl}
                   checked={form.label === lbl}
                   onChange={e => handleChange('label', e.target.value)}
@@ -170,20 +136,17 @@ const initial = {
             ))}
           </div>
         </div>
-        <div style={{ ...styles.field, justifyContent: 'flex-end' }}>
-          <label htmlFor="isDefault" style={styles.checkboxLabel}>
-            <input
-              id="isDefault"
-              type="checkbox"
-              checked={form.isDefault}
-              onChange={e => handleChange('isDefault', e.target.checked)}
-            />
-            {' '}Set as default
-          </label>
-        </div>
+
+        <label style={styles.checkbox}>
+          <input
+            type="checkbox"
+            checked={form.isDefault}
+            onChange={e => handleChange('isDefault', e.target.checked)}
+          />
+          Set as default
+        </label>
       </div>
 
-      {/* Actions */}
       <div style={styles.actions}>
         {onCancel && (
           <button type="button" style={styles.secondary} onClick={onCancel}>
@@ -198,25 +161,48 @@ const initial = {
   );
 };
 
+/* Field */
+const Field = ({ label, error, children }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <label style={styles.label}>{label}</label>
+    {children}
+    {error && <span style={styles.error}>{error}</span>}
+  </div>
+);
+
+/* Styles */
 const styles = {
-  form: { display: 'flex', flexDirection: 'column', gap: 14 },
-  row: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 },
-  field: { display: 'flex', flexDirection: 'column' },
-  label: { fontSize: 13, color: '#333', marginBottom: 6, fontWeight: 600 },
-  input: {
-    padding: '10px 12px',
-    border: '1px solid #ccc',
-    borderRadius: 6,
-    fontSize: 14,
-    outline: 'none',
+  card: {
+    background: '#fff',
+    padding: 24,
+    borderRadius: 12,
+    boxShadow: '0 10px 25px rgba(0,0,0,0.08)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 16,
   },
-  error: { color: '#b00020', fontSize: 12, marginTop: 4 },
-  radioGroup: {display: 'flex', gap: 16, alignItems: 'center' },
-  radioLabel: { display: 'flex', alignItems: 'center', gap: 6, fontSize: 14 },
-  checkboxLabel: { display: 'flex', alignItems: 'center', gap: 6, fontSize: 14 },
-  actions: { display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 8 },
-  primary: { background: 'rgb(47, 191, 93)', color: '#fff', border: 'none', padding: '10px 16px', borderRadius: 6, cursor: 'pointer' },
-  secondary: { background: '#eee', color: '#333', border: 'none', padding: '10px 16px', borderRadius: 6, cursor: 'pointer' },
+  grid2: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 },
+  grid3: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 },
+  rowBetween: { display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 },
+  label: { fontSize: 13, fontWeight: 600 },
+  input: (error) => ({
+    padding: '10px 12px',
+    borderRadius: 8,
+    border: `1px solid ${error ? '#d32f2f' : '#ccc'}`,
+  }),
+  error: { fontSize: 12, color: '#d32f2f' },
+  radioGroup: { display: 'flex', gap: 10 },
+  chip: (active) => ({
+    padding: '6px 14px',
+    borderRadius: 20,
+    border: active ? '2px solid #2fbf5d' : '1px solid #ccc',
+    background: active ? '#e9f8ef' : '#fff',
+    cursor: 'pointer',
+  }),
+  checkbox: { display: 'flex', gap: 6 },
+  actions: { display: 'flex', justifyContent: 'flex-end', gap: 10 },
+  primary: { background: '#2fbf5d', color: '#fff', padding: '10px 18px', borderRadius: 8 },
+  secondary: { background: '#eee', padding: '10px 18px', borderRadius: 8 },
 };
 
 export default AddressForm;
