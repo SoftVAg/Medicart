@@ -161,7 +161,7 @@ const styles = {
     cursor: 'pointer',
     fontWeight: 600,
   },
-  title: { color:'#2fbf5d', fontSize: '1.8rem' },
+  title: { fontWeight: 700, color: 'rgb(21, 128, 61)', fontSize: '1.8rem' },
   layout: { display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '24px' },
   left: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
   right: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
