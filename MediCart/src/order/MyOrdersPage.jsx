@@ -53,6 +53,7 @@ function MyOrdersPage() {
   };
 
   return (
+<<<<<<< HEAD
     <>
 
       {/* ✅ Page styling ONLY */}
@@ -62,6 +63,20 @@ function MyOrdersPage() {
           <h2 className="text-3xl font-bold text-green-700 mt-8 mb-8">
             My Orders
           </h2>
+=======
+    <div className="min-h-screen bg-gray-50">
+      
+
+      <div className="max-w-4xl mx-auto p-6">
+        <Navbar />
+        <button
+          onClick={() => navigate("/")}
+          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mt-6 mb-6"
+        >
+          ← Back to Home
+        </button>
+        <h2 className="text-3xl font-bold text-green-700 mb-8">My Orders</h2>
+>>>>>>> 273156b7fb03534c6740f130cee51efa6918ba57
 
           <div className="space-y-8">
             {orders.map(order => (

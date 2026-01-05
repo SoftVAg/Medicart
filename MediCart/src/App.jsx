@@ -9,6 +9,8 @@ import MediCartModule4 from "./features/payment/MediCartModule4";
 import AddressPage from "./features/delivery/AddressPage";
 import MyOrdersPage from "./order/MyOrdersPage";
 import OrderDetailsPage from "./order/OrderDetailsPage";
+import Dashboard from "./features/admin/analyticsSecction/dashboard.jsx";
+import Reports from "./features/admin/analyticsSecction/Reports.jsx";
 
 export default function App() {
   return (
@@ -30,7 +32,8 @@ export default function App() {
         <Route index element={<Navigate to="products" />} />
         <Route path="products" element={<AdminProductsPage />} />
         <Route path="batches" element={<AdminBatchPage />} />
-        
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="reports" element={<Reports />} />
       </Route>
 
       {/* FALLBACK */}

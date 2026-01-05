@@ -34,6 +34,7 @@ export const AddressList = ({
               </div>
             </div>
 
+<<<<<<< HEAD
             {/* Body */}
             <div style={styles.body}>
               <div style={styles.name}>{a.name}</div>
@@ -76,6 +77,20 @@ export const AddressList = ({
                 Deliver Here
               </button>
             </div>
+=======
+          <div style={styles.actions}>
+            <button style={styles.smallBtn} onClick={() => onEdit(a.id)}>Edit</button>
+            <button style={styles.smallBtn} onClick={() => onDelete(a.id)}>Delete</button>
+            {!a.isDefault && (
+              <button style={styles.smallBtn} onClick={() => onSetDefault(a.id)}>Set Default</button>
+            )}
+            {/* <button
+              style={{ ...styles.smallBtn, background: selectedId === a.id ? 'rgb(47, 191, 93)' : '#eee', color: selectedId === a.id ? '#fff' : 'rgb(47, 191, 93)' }}
+              onClick={() => onSelect(a.id)}
+            >
+              Deliver Here
+            </button> */}
+>>>>>>> 273156b7fb03534c6740f130cee51efa6918ba57
           </div>
         );
       })}

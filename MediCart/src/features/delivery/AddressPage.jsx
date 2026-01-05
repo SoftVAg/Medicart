@@ -92,7 +92,7 @@ const AddressPage = () => {
       <div style={styles.topBar}>
         <button
           onClick={() => navigate("/cart")}
-          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mb-6"
+          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mt-6 mb-6"
         >
           ← Back to Cart
         </button>
@@ -128,6 +128,7 @@ const AddressPage = () => {
           )}
           <div style={styles.footer}>
             <button
+
               style={styles.primary}
               onClick={() => {
                 if (addresses.length === 0) {
@@ -135,11 +136,12 @@ const AddressPage = () => {
                 } else if (!selectedId) {
                   alert('Please select an address for delivery.');
                 } else {
-                  alert(`Deliver to address ID: ${selectedId}`);
+                  navigate("/payment");
                 }
               }}
             >
-              Deliver Here
+
+              Checkout
             </button>
           </div>
         </div>
@@ -173,11 +175,16 @@ const styles = {
     cursor: 'pointer',
     fontWeight: 600,
   },
+<<<<<<< HEAD
   title: { color:'#2fbf5d', fontSize: '1.8rem' },
   layout: { display: 'grid', 
     gridTemplateColumns: '1fr 1.2fr', 
     gap: '24px' ,padding:'0px'
   },
+=======
+  title: { fontWeight: 700, color: 'rgb(21, 128, 61)', fontSize: '1.8rem' },
+  layout: { display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '24px' },
+>>>>>>> 273156b7fb03534c6740f130cee51efa6918ba57
   left: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
   right: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
   sectionTitle: { fontSize: '1.2rem', marginBottom: 12 },
