@@ -175,7 +175,7 @@ const styles = {
     cursor: 'pointer',
     fontWeight: 600,
   },
-  title: { color:'#2fbf5d', fontSize: '1.8rem' },
+  title: { fontWeight:'700' ,color:'#2fbf5d', fontSize: '1.8rem' },
   layout: { display: 'grid', 
     gridTemplateColumns: '1fr 1.2fr', 
     gap: '24px' ,padding:'0px'
