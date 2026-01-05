@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddressForm from './AddressForm';
 import AddressList from './AddressList';
-import Navbar from '../../components/navbar-1/Navbar';
+import Navbar from '../../components/navbar/Navbar';
 
 const STORAGE_KEY = 'addresses';
 
@@ -92,7 +92,7 @@ const AddressPage = () => {
       <div style={styles.topBar}>
         <button
           onClick={() => navigate("/cart")}
-          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mb-6"
+          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mt-6 mb-6"
         >
           ← Back to Cart
         </button>
@@ -128,6 +128,7 @@ const AddressPage = () => {
           )}
           <div style={styles.footer}>
             <button
+
               style={styles.primary}
               onClick={() => {
                 if (addresses.length === 0) {
@@ -135,11 +136,12 @@ const AddressPage = () => {
                 } else if (!selectedId) {
                   alert('Please select an address for delivery.');
                 } else {
-                  alert(`Deliver to address ID: ${selectedId}`);
+                  navigate("/payment");
                 }
               }}
             >
-              Deliver Here
+
+              Checkout
             </button>
           </div>
         </div>
@@ -149,8 +151,22 @@ const AddressPage = () => {
 };
 
 const styles = {
-  page: { padding: '32px', fontFamily: 'system-ui, Arial, sans-serif' },
-  topBar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
+  page: { padding: '32px', 
+    fontFamily: 'system-ui, Arial, sans-serif',
+    maxWidth: '1200px',
+    margin: '0 auto',
+   },
+  topBar: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: '0px',
+    marginTop: 24,     // 👈 space below navbar
+    marginBottom: 24,
+    maxWidth: '1200px',
+    marginLeft: '0px',
+    marginRight: '0px',
+  },
   backButton: {
     background: 'transparent',
     border: 'none',
@@ -160,7 +176,10 @@ const styles = {
     fontWeight: 600,
   },
   title: { color:'#2fbf5d', fontSize: '1.8rem' },
-  layout: { display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '24px' },
+  layout: { display: 'grid', 
+    gridTemplateColumns: '1fr 1.2fr', 
+    gap: '24px' ,padding:'0px'
+  },
   left: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
   right: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
   sectionTitle: { fontSize: '1.2rem', marginBottom: 12 },

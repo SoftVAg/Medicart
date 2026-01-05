@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/navbar-1/Navbar';
+import Navbar from '../../components/navbar/Navbar';
  
 export default function CartPage() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function CartPage() {
 <div style={styles.topBar}>
 <button
           onClick={() => navigate("/")}
-          style={styles.backButton}
+          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mt-6 mb-6"
 >
           ← Back to Orders
 </button>
@@ -101,12 +101,11 @@ export default function CartPage() {
 };
  
 const styles = {
-  page: {
-    padding: '32px',
+  page: { padding: '32px', 
     fontFamily: 'system-ui, Arial, sans-serif',
-    background: '#f9fafb',
-    minHeight: '100vh',
-  },
+    maxWidth: '1200px',
+    margin: '0 auto',
+   },
   topBar: {
     display: 'flex',
     flexDirection: 'column',
