@@ -39,8 +39,9 @@ export default function Navbar({ searchValue, onSearch }) {
             <span className="cart-count">{totalQty}</span>
           )}
         </div>
-
+         
         <FaUserCircle size={26} className="profile-icon" />
+        
       </div>
     </header>
   );

@@ -2,6 +2,7 @@ import { FaShoppingCart, FaUserCircle, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import "./navbar.css";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ searchValue, onSearch }) {
   // ✅ Get cart items from Redux
@@ -52,7 +53,7 @@ export default function Navbar({ searchValue, onSearch }) {
       {/* ACTIONS */}
       <div className="navbar-actions">
         <div className="cart-wrapper">
-          <FaShoppingCart size={20} />
+          <Link to="/cart" ><FaShoppingCart size={20} /></Link>
           {totalQty > 0 && <span className="cart-count">{totalQty}</span>}
         </div>
 
@@ -68,8 +69,13 @@ export default function Navbar({ searchValue, onSearch }) {
           {showMenu && (
             <div className="profile-menu">
               <ul>
+                <Link to = "/orders">
                 <li>Orders</li>
+
+                </Link>
+                <Link to="dashboard/client">
                 <li>Account</li>
+                </Link>
               </ul>
             </div>
           )}

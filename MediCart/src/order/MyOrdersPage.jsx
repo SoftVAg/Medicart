@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
-import Navbar from "../components/navbar-1/Navbar";
-
+import Navbar from "../components/navbar/Navbar";
+ 
 function MyOrdersPage() {
   const navigate = useNavigate();
-
+ 
   const [orders, setOrders] = useState([
     {
       id: "ORD123",
@@ -30,7 +30,7 @@ function MyOrdersPage() {
       ],
     },
   ]);
-
+ 
   const handleRating = (orderId, ratingValue) => {
     setOrders(prev =>
       prev.map(order =>
@@ -38,7 +38,7 @@ function MyOrdersPage() {
       )
     );
   };
-
+ 
   const getStatusColor = status => {
     switch (status) {
       case "Delivered":
@@ -51,14 +51,21 @@ function MyOrdersPage() {
         return "bg-gray-100 text-gray-700";
     }
   };
-
+ 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
-
+     
+ 
       <div className="max-w-4xl mx-auto p-6">
+        
+        <button
+          onClick={() => navigate("/")}
+          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mt-6 mb-6"
+        >
+          ← Back to Home
+        </button>
         <h2 className="text-3xl font-bold text-green-700 mb-8">My Orders</h2>
-
+ 
         <div className="space-y-8">
           {orders.map(order => (
             <div
@@ -85,7 +92,7 @@ function MyOrdersPage() {
                   </p>
                 </div>
               </div>
-
+ 
               {/* Product List */}
               <div className="border-t border-gray-200 pt-4 space-y-2">
                 {order.products.map((product, idx) => (
@@ -102,7 +109,7 @@ function MyOrdersPage() {
                   </div>
                 ))}
               </div>
-
+ 
               {/* Rating */}
               <div className="flex items-center gap-1 mt-4">
                 {[1, 2, 3, 4, 5].map(star => (
@@ -120,7 +127,7 @@ function MyOrdersPage() {
                   {order.rating > 0 ? `${order.rating}/5` : "Rate this order"}
                 </span>
               </div>
-
+ 
               {/* View Details Button */}
               <button
                 onClick={() => navigate(`/orders/${order.id}`)}
@@ -135,5 +142,5 @@ function MyOrdersPage() {
     </div>
   );
 }
-
+ 
 export default MyOrdersPage;

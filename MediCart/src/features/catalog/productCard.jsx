@@ -16,7 +16,7 @@ export default function ProductCard({ product, onViewMore }) {
   return (
     <div className="card">
       {/* Icon */}
-      <div className="card-header">
+      <div className="card-header-1">
         <div className="icon-wrap">
           <Icon size={42} />
         </div>
@@ -29,7 +29,7 @@ export default function ProductCard({ product, onViewMore }) {
       </div>
 
       {/* Footer / Actions */}
-      <div className="card-footer">
+      <div className="card-footer-1">
         {product.inStock ? (
           cartItem ? (
             <div className="qty-controls">

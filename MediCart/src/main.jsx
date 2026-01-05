@@ -1,4 +1,7 @@
-import './styles/vars.css'; // Must be first
+import './styles/vars.css'; 
+// Must be first
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css'
 import App from './App.jsx'
 import React from "react";

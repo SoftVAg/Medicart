@@ -99,7 +99,7 @@ export default function BatchEditorModal({
             >
               Cancel
             </button>
-            <button type="submit" className="btn-primary">
+            <button type="submit" className="btn-save" >
               Save
             </button>
           </div>

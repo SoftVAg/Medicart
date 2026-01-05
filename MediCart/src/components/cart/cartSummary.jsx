@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import "./cartSummary.css";
+import { Link } from "react-router-dom";
 
 export default function CartSummary() {
   const items = useSelector((state) => state.cart.items);
@@ -16,7 +17,7 @@ export default function CartSummary() {
     <div className="cart-summary">
       <span>{totalQty} items</span>
       <span>₹ {totalPrice}</span>
-      <button>View Cart</button>
+     <Link to ="/cart"> <button>View Cart</button> </Link>
     </div>
   );
 }

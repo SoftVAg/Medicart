@@ -16,7 +16,7 @@
 }
 
 /* Header */
-.card-header {
+.card-header-1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +49,7 @@
 }
 
 /* Footer */
-.card-footer {
+.card-footer-1 {
   margin-top: auto;
 }
 .card-actions {
@@ -76,6 +76,7 @@
   border: none;
   color: #fff;
   font-weight: 600;
+ 
 }
 .btn-cart:hover {
   background: #26a654;

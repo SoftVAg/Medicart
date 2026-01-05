@@ -91,9 +91,9 @@ export default function HomePage() {
         onClose={() => setSelectedProduct(null)}
       />
 
-      <CartSummary/>
+      <CartSummary />
 
-      
+
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
 import BatchTable from "./BatchTable";
 import BatchEditorModal from "./BatchEditorModal";
 import "./batch.css";
+import "./admin.css"
 
 export default function AdminBatchPage() {
   const [editingBatch, setEditingBatch] = useState(null);
@@ -38,7 +39,7 @@ export default function AdminBatchPage() {
         </div>
 
         <button
-          className="btn-primary"
+          className="btn-Primary"
           onClick={() => setEditingBatch({})}
         >
           + Add Batch
