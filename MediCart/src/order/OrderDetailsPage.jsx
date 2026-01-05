@@ -27,13 +27,7 @@ function OrderDetailsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-<<<<<<< HEAD
       <div className="max-w-6xl mx-auto p-6">
-=======
-      
-
-      <div className="max-w-4xl mx-auto p-6">
->>>>>>> 273156b7fb03534c6740f130cee51efa6918ba57
         <Navbar />
         {/* Back button */}
         <button

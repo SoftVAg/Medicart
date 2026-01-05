@@ -175,16 +175,11 @@ const styles = {
     cursor: 'pointer',
     fontWeight: 600,
   },
-<<<<<<< HEAD
   title: { color:'#2fbf5d', fontSize: '1.8rem' },
   layout: { display: 'grid', 
     gridTemplateColumns: '1fr 1.2fr', 
     gap: '24px' ,padding:'0px'
   },
-=======
-  title: { fontWeight: 700, color: 'rgb(21, 128, 61)', fontSize: '1.8rem' },
-  layout: { display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '24px' },
->>>>>>> 273156b7fb03534c6740f130cee51efa6918ba57
   left: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
   right: { border: '1px solid #eee', borderRadius: 8, padding: 16 },
   sectionTitle: { fontSize: '1.2rem', marginBottom: 12 },
