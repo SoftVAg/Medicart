@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddressForm from './AddressForm';
 import AddressList from './AddressList';
-import Navbar from '../../components/navbar-1/Navbar';
+import Navbar from '../../components/navbar/Navbar';
 
 const STORAGE_KEY = 'addresses';
 
@@ -92,7 +92,7 @@ const AddressPage = () => {
       <div style={styles.topBar}>
         <button
           onClick={() => navigate("/cart")}
-          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mb-6"
+          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mt-6 mb-6"
         >
           ← Back to Cart
         </button>
@@ -128,6 +128,7 @@ const AddressPage = () => {
           )}
           <div style={styles.footer}>
             <button
+
               style={styles.primary}
               onClick={() => {
                 if (addresses.length === 0) {
@@ -135,11 +136,12 @@ const AddressPage = () => {
                 } else if (!selectedId) {
                   alert('Please select an address for delivery.');
                 } else {
-                  alert(`Deliver to address ID: ${selectedId}`);
+                  navigate("/payment");
                 }
               }}
             >
-              Deliver Here
+
+              Checkout
             </button>
           </div>
         </div>

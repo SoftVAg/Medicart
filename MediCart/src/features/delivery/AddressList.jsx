@@ -27,12 +27,12 @@ export const AddressList = ({ addresses, selectedId, onSelect, onEdit, onDelete,
             {!a.isDefault && (
               <button style={styles.smallBtn} onClick={() => onSetDefault(a.id)}>Set Default</button>
             )}
-            <button
+            {/* <button
               style={{ ...styles.smallBtn, background: selectedId === a.id ? 'rgb(47, 191, 93)' : '#eee', color: selectedId === a.id ? '#fff' : 'rgb(47, 191, 93)' }}
               onClick={() => onSelect(a.id)}
             >
               Deliver Here
-            </button>
+            </button> */}
           </div>
         </div>
       ))}

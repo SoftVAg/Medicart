@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
-import Navbar from "../components/navbar-1/Navbar";
+import Navbar from "../components/navbar/Navbar";
 
 function MyOrdersPage() {
   const navigate = useNavigate();
@@ -54,9 +54,16 @@ function MyOrdersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+      
 
       <div className="max-w-4xl mx-auto p-6">
+        <Navbar />
+        <button
+          onClick={() => navigate("/")}
+          className="text-green-700 border border-green-700 px-4 py-2 rounded hover:bg-green-50 transition mt-6 mb-6"
+        >
+          ← Back to Home
+        </button>
         <h2 className="text-3xl font-bold text-green-700 mb-8">My Orders</h2>
 
         <div className="space-y-8">

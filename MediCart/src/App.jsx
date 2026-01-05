@@ -30,7 +30,6 @@ export default function App() {
         <Route index element={<Navigate to="products" />} />
         <Route path="products" element={<AdminProductsPage />} />
         <Route path="batches" element={<AdminBatchPage />} />
-        
       </Route>
 
       {/* FALLBACK */}
